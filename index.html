@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חניון חכם - לוח בקרה</title>
+
+    <style>
+        /* העיצוב המקורי שלך */
+        body {
+            background-color: #f1f5f9;
+            font-family: Arial;
+            margin: 25px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1 {
+            background-color: darkblue;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: darkblue;
+        }
+
+        .notice {
+            background-color: white;
+            border: 2px solid gray;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .important {
+            background-color: lightyellow;
+            border: 2px solid orange;
+        }
+
+        .date {
+            color: gray;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: darkblue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        /* תוספות עבור מצב לילה ומצלמה */
+        body.dark-mode { background-color: #1a1a1a; color: #f1f5f9; }
+        body.dark-mode h1 { background-color: #00004d; }
+        body.dark-mode h2 { color: #80bfff; }
+        body.dark-mode .notice { background-color: #333; border-color: #555; }
+        body.dark-mode .important { background-color: #4d4d00; border-color: #cc8800; }
+        body.dark-mode .date { color: #bbb; }
+        
+        .camera-image {
+            max-width: 100%;
+            border: 3px dashed darkblue;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>עמדת שומר - חניון חכם 🚗</h1>
+
+    <!-- כפתור התוספת האישית שלך -->
+    <button onclick="toggleDarkMode()">הפעל/כבה מצב לילה 🌙</button>
+
+    <p>
+        ברוך הבא ללוח הבקרה. כאן תוכל לנטר את הרכבים הנכנסים לחניון בזמן אמת.
+    </p>
+
+    <hr>
+
+    <h2>מצלמת שער כניסה</h2>
+
+    <div class="notice important">
+        <h3>רכב אחרון שזוהה:</h3>
+        
+        <!-- התמונה נמשכת משרת ה-Apache שלנו שירוץ על פורט 8080 -->
+        <img class="camera-image" src="http://localhost:8080/old-car.jpg" alt="ממתין לתמונה מהמצלמה...">
+        
+        <p class="date">מקור נתונים: שרת אחסון תמונות (Apache)</p>
+    </div>
+
+    <div class="notice">
+        <h3>עדכוני מערכת</h3>
+        <p>החניון פעיל ותקין. שרתי ה-Web וה-Storage מחוברים.</p>
+    </div>
+
+    <script>
+        // הפונקציה למצב לילה
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+
+</body>
+</html>

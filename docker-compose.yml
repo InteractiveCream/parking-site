@@ -1,0 +1,21 @@
+
+services:
+  # שרת Web (Nginx) - מציג את לוח הבקרה
+  web:
+    image: nginx:latest
+    container_name: smart-parking-web #שם לשרת 
+    ports:
+      - "80:80" 
+    volumes: #שהתמונות לא ימחקו שנכבה את הדוקר
+      # מחבר את קובץ ה-HTML שלך ישירות לשרת
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+
+  # שרת Storage (Apache) - מאחסן ומגיש את התמונות
+  storage:
+    image: httpd:latest
+    container_name: smart-parking-storage
+    ports:
+      - "8080:80"
+    volumes:
+      # זהו ה-Data Persistence Volume! הוא שומר שהתמונות לא יימחקו
+      - ./data-imgs:/usr/local/apache2/htdocs/
