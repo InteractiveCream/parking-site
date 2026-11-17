@@ -80,7 +80,7 @@
 
     <h1>עמדת שומר - חניון חכם 🚗</h1>
 
-    <!-- כפתור התוספת האישית שלך -->
+    <!-- כפתור מצב לילה -->
     <button onclick="toggleDarkMode()">הפעל/כבה מצב לילה 🌙</button>
 
     <p>
@@ -92,10 +92,10 @@
     <h2>מצלמת שער כניסה</h2>
 
     <div class="notice important">
-        <h3>רכב אחרון שזוהה:</h3>
+        <h3>רכב אחרון שזוהה (Live Feed):</h3>
         
-        <!-- התמונה נמשכת משרת ה-Apache שלנו שירוץ על פורט 8080 -->
-        <img class="camera-image" src="http://localhost:8080/old-car.jpg" alt="ממתין לתמונה מהמצלמה...">
+        <!-- הוספנו את ה-id="live-camera" כדי שהסקריפט יוכל לשנות את התמונה -->
+        <img id="live-camera" class="camera-image" src="http://localhost:8080/old-car.jpg" alt="ממתין לתמונה מהמצלמה...">
         
         <p class="date">מקור נתונים: שרת אחסון תמונות (Apache)</p>
     </div>
@@ -106,10 +106,25 @@
     </div>
 
     <script>
-        // הפונקציה למצב לילה
+        // 1. הפונקציה למצב לילה
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
         }
+
+        // 2. הפונקציה להחלפת התמונות (Live Feed)
+        // ודאי שהתמונות האלו קיימות בתיקיית data-imgs שלך
+        const carImages = ["old-car.jpg", "orange-car.jpg", "orange-sports-car.jpg"];
+        let currentImageIndex = 0;
+
+        function rotateImages() {
+            currentImageIndex = (currentImageIndex + 1) % carImages.length;
+            const nextImage = carImages[currentImageIndex];
+            // משנה את ה-src של התמונה לכתובת החדשה בשרת
+            document.getElementById('live-camera').src = "http://localhost:8080/" + nextImage;
+        }
+
+        // מחליף תמונה כל 3 שניות (3000 מילישניות)
+        setInterval(rotateImages, 3000);
     </script>
 
 </body>
