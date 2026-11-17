@@ -6,9 +6,11 @@ services:
     container_name: smart-parking-web #שם לשרת 
     ports:
       - "80:80" 
-    volumes: #שהתמונות לא ימחקו שנכבה את הדוקר
-      # מחבר את קובץ ה-HTML שלך ישירות לשרת
+    volumes: 
       - ./index.html:/usr/share/nginx/html/index.html:ro
+      #שהתמונות לא ימחקו שנכבה את הדוקר
+      # מחבר את קובץ ישירות לשרת
+      
 
   # שרת Storage (Apache) - מאחסן ומגיש את התמונות
   storage:
